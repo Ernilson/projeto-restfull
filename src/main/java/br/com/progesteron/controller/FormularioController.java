@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +24,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.progesteron.model.FormularioModel;
+import br.com.progesteron.data.model.FormularioModel;
+import br.com.progesteron.data.model.dto.FormularioDTO;
 import br.com.progesteron.serviceImpl.FormularioServiceImpl;
 
 @RestController
@@ -33,7 +37,9 @@ public class FormularioController {
 
 	@GetMapping("/listarCadastro")
 	public ResponseEntity<List<FormularioModel>> listTodos() {
+		
 		List<FormularioModel> fmlist = service.listAll();
+		
 		if (fmlist.isEmpty()) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		} else {
@@ -43,6 +49,7 @@ public class FormularioController {
 			}
 		}
 		return new ResponseEntity<List<FormularioModel>>(fmlist, HttpStatus.OK);
+		
 	}
 
 	@GetMapping(path = { "/{id}" })
@@ -66,16 +73,20 @@ public class FormularioController {
 			result.getAllErrors().forEach(erro -> erros.add(erro.getDefaultMessage()));
 			return null;
 		}
+		
 		fm.setId_c(id);
 		boolean cad = service.alterar(fm);
 		fm.add(linkTo(methodOn(FormularioController.class). buscaPorId(id)).withSelfRel());
 		return ResponseEntity.ok(cad);
 	}
+	
 
 	@RequestMapping(method = RequestMethod.POST, value = "/salvar")
-	public ResponseEntity<FormularioModel> salvaFormulario(@RequestBody FormularioModel c) throws Exception {
-		service.saveOrUpdate(c);
-		c.add(linkTo(methodOn(FormularioController.class).listTodos()).withSelfRel());
+	public ResponseEntity<FormularioModel> salvaFormulario(@RequestBody @Valid FormularioDTO dto) throws Exception {
+		FormularioModel model = new FormularioModel();
+		BeanUtils.copyProperties(dto, model);		
+		service.saveOrUpdate(model);
+		model.add(linkTo(methodOn(FormularioController.class).listTodos()).withSelfRel());
 		return new ResponseEntity<FormularioModel>(HttpStatus.OK);
 	}
 

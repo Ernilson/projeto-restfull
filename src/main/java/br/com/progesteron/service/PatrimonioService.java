@@ -2,7 +2,7 @@ package br.com.progesteron.service;
 
 import java.util.List;
 
-import br.com.progesteron.model.PatrimonioModel;
+import br.com.progesteron.data.model.PatrimonioModel;
 
 public interface PatrimonioService {
 

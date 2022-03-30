@@ -1,4 +1,4 @@
-package br.com.progesteron.model;
+package br.com.progesteron.data.model;
 
 import org.springframework.hateoas.RepresentationModel;
 

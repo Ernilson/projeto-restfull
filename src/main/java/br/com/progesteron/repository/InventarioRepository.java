@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import br.com.progesteron.model.PatrimonioModel;
+import br.com.progesteron.data.model.PatrimonioModel;
 
 public interface InventarioRepository extends JpaRepository<PatrimonioModel, Long>{
 

@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.progesteron.model.PatrimonioModel;
+import br.com.progesteron.data.model.PatrimonioModel;
 import br.com.progesteron.repository.InventarioRepository;
 import br.com.progesteron.service.PatrimonioService;
 

@@ -2,7 +2,7 @@ package br.com.progesteron.service;
 
 import java.util.List;
 
-import br.com.progesteron.model.FormularioModel;
+import br.com.progesteron.data.model.FormularioModel;
 
 public interface FormularioService {
 	

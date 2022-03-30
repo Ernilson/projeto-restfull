@@ -1,4 +1,4 @@
-package br.com.progesteron.model;
+package br.com.progesteron.data.model;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -21,7 +21,7 @@ public class FormularioModel extends RepresentationModel<FormularioModel> implem
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_c;
-    @Column(length = 200)
+	 @Column(length = 200, nullable = false)
     private String nome;
     @Column(length = 20)
     private String fone;

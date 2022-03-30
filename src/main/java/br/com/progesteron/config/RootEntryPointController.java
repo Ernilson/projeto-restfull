@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.progesteron.controller.FormularioController;
 import br.com.progesteron.controller.PatrimonioController;
-import br.com.progesteron.model.RootEntryPointModel;
+import br.com.progesteron.data.model.RootEntryPointModel;
 
 @RestController
 public class RootEntryPointController {

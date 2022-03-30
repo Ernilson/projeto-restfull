@@ -6,8 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
-import br.com.progesteron.model.FormularioModel;
+import br.com.progesteron.data.model.FormularioModel;
 import br.com.progesteron.repository.FormularioRepository;
 import br.com.progesteron.service.FormularioService;
  
