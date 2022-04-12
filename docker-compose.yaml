@@ -1,0 +1,29 @@
+version: '3'
+services:
+  teste45:
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    image: progesteron/api
+    ports:
+        - '8080:8080'
+        - '5005:5005'
+        
+    environment:
+      - ADDITIONAL_OPTS=-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:8000
+      - PROFILE=dev
+    links:
+      - db
+  db:
+    image: mysql:5.6
+    ports:
+      - '3309:3306'
+          
+    environment:
+      - MYSQL_ROOT_HOT=%
+      - MYSQL_DATABASE=teste45
+      - MYSQL_USER=root
+      - MYSQL_ROOT_PASSWORD=root
+          
+    volumes:
+      - ./docker/volume_mysql:/var/lib/mysql
